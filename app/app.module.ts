@@ -8,8 +8,10 @@ import { EventsListComponent } from './events/events-list.component'
 import { EventThumbnailComponent } from './events/event-thumbnail.component'
 import { CreateEventComponent } from './events/create-event/create-event.component'
 import { EventDetailsComponent } from './events/event-details/event-details.component'
+import { Error404Component } from './error/404.component'
 import { EventService } from './events/shared/event.service'
 import { ToastrService } from './common/toastr.service'
+import { EventRouteActivator } from './events/event-details/event-route-activator.service'
 
 import { appRoutes } from './routes'
 
@@ -24,13 +26,25 @@ import { appRoutes } from './routes'
     EventsListComponent,
     EventThumbnailComponent,
     CreateEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    Error404Component
   ],
   providers: [
     EventService,
-    ToastrService
+    ToastrService,
+    EventRouteActivator,
+    {
+      provide: 'canDeactivateCreateEvent',
+      useValue: checkDirtyState
+    }
   ],
   bootstrap: [EventsAppComponent]
 })
 
 export class AppModule {}
+
+function checkDirtyState(component:CreateEventComponent){
+  if(component.isDirty)
+    window.confirm('You have not saved this event. Do you really want to cancel?')
+  return true
+}
