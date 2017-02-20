@@ -8,10 +8,11 @@ import { EventsListComponent } from './events/events-list.component'
 import { EventThumbnailComponent } from './events/event-thumbnail.component'
 import { CreateEventComponent } from './events/create-event/create-event.component'
 import { EventDetailsComponent } from './events/event-details/event-details.component'
-import { Error404Component } from './error/404.component'
-import { EventService } from './events/shared/event.service'
+import { Error404Component } from './errors/404.component'
+import { EventsService } from './events/shared/events.service'
 import { ToastrService } from './common/toastr.service'
 import { EventRouteActivator } from './events/event-details/event-route-activator.service'
+import { EventsListResolver } from './events/events-list-resolver.service'
 
 import { appRoutes } from './routes'
 
@@ -30,13 +31,14 @@ import { appRoutes } from './routes'
     Error404Component
   ],
   providers: [
-    EventService,
+    EventsService,
     ToastrService,
     EventRouteActivator,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
-    }
+    },
+    EventsListResolver
   ],
   bootstrap: [EventsAppComponent]
 })
