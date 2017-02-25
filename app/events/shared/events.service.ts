@@ -5,7 +5,7 @@ import { IEvent } from './event.model'
 @Injectable()
 export class EventsService {
 
-  getEvents():Observable<IEvent[]> {
+  getEvents(){
     let subject = new Subject()
     setTimeout(() => {
       subject.next(EVENTS)
@@ -18,7 +18,7 @@ export class EventsService {
   }
 }
 
-const EVENTS:IEvent[] = [
+const EVENTS = [
     {
       id: 1,
       name: 'Angular Connect',
