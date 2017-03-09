@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HTTPModule } from '@angular/http'
 
 import { EventsAppComponent } from './events-app.component'
 
@@ -17,6 +18,7 @@ import {
   CreateSessionComponent,
   SessionListComponent,
   UpvoteComponent,
+  LocationValidator,
   DurationPipe
 } from './events/index'
 
@@ -42,7 +44,8 @@ declare let jQuery:Object
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule,
+    FormsModule,,
+    HTTPModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -59,6 +62,7 @@ declare let jQuery:Object
     SimpleModalComponent,
     UpvoteComponent,
     ModalTriggerDirective,
+    LocationValidator,
     DurationPipe
   ],
   providers: [
