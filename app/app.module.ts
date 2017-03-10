@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HTTPModule } from '@angular/http'
+import { HttpModule } from '@angular/http'
 
 import { EventsAppComponent } from './events-app.component'
 
@@ -13,8 +13,8 @@ import {
   EventThumbnailComponent,
   CreateEventComponent,
   EventDetailsComponent,
-  EventRouteActivator,
   EventsListResolver,
+  EventResolver,
   CreateSessionComponent,
   SessionListComponent,
   UpvoteComponent,
@@ -44,8 +44,8 @@ declare let jQuery:Object
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule,,
-    HTTPModule,
+    FormsModule,
+    HttpModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -70,8 +70,8 @@ declare let jQuery:Object
     VoterService,
     { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: JQ_TOKEN, useValue: jQuery },
-    EventRouteActivator,
     EventsListResolver,
+    EventResolver,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
