@@ -24,7 +24,7 @@ export class VoterService {
     }
 
     userHasVoted(session:ISession, voterName:string){
-        return session.voters.some(voter => voter === voterName).catch(this.handleError)
+        return session.voters.some(voter => voter === voterName)
     }
 
     private handleError(error:Response){
