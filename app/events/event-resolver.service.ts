@@ -6,7 +6,7 @@ import { EventsService } from './shared/events.service'
 export class EventResolver implements Resolve<any> {
   constructor (private eventsService: EventsService) {}
 
-  resolve(route: ActivatedRouteSnapshot){
+  public resolve(route: ActivatedRouteSnapshot) {
     return this.eventsService.getEvent(route.params['id'])
   }
 }

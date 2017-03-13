@@ -7,7 +7,7 @@ import { ISession } from '../shared/event.model'
 export class VoterService {
     constructor(private http: Http) {}
 
-    private addVoter(eventId: number, session: ISession, voterName: string) {
+    public addVoter(eventId: number, session: ISession, voterName: string) {
         session.voters.push(voterName)
 
         let headers = new Headers({ 'Content-Type': 'application/json '})
@@ -17,17 +17,17 @@ export class VoterService {
         this.http.post(url, JSON.stringify({}), options).subscribe()
     }
 
-    private deleteVoter(eventId: number, session: ISession, voterName: string) {
+    public deleteVoter(eventId: number, session: ISession, voterName: string) {
         session.voters = session.voters.filter((voter) => voter !== voterName)
         let url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`
         this.http.delete(url).catch(this.handleError).subscribe()
     }
 
-    private userHasVoted(session: ISession, voterName: string) {
+    public userHasVoted(session: ISession, voterName: string) {
         return session.voters.some((voter) => voter === voterName)
     }
 
-    private handleError(error: Response) {
+    public handleError(error: Response) {
         return Observable.throw(error.statusText)
     }
 }

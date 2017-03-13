@@ -24,10 +24,10 @@ import {
 
 import {
   CollapsableWellComponent,
+  IToastr,
   JQ_TOKEN,
   ModalTriggerDirective,
   SimpleModalComponent,
-  Toastr,
   TOASTR_TOKEN,
 } from './common/index'
 
@@ -37,7 +37,7 @@ import { AuthService } from './user/auth.service'
 
 import { appRoutes } from './routes'
 
-declare let toastr: Toastr
+declare let toastr: IToastr
 declare let jQuery: Object
 
 @NgModule({

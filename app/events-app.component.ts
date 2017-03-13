@@ -12,7 +12,7 @@ import { AuthService } from './user/auth.service'
 export class EventsAppComponent {
   constructor(private auth: AuthService) {}
 
-  private ngOnInit() {
+  public ngOnInit() {
     this.auth.checkAuthenticationStatus()
   }
 }

@@ -13,7 +13,7 @@ import { FormGroup, NG_VALIDATORS, Validator } from '@angular/forms'
 })
 
 export class LocationValidator implements Validator {
-    private validate(formGroup: FormGroup): { [key: string]: any } {
+    public validate(formGroup: FormGroup): { [key: string]: any } {
         let addressCtrl = formGroup.controls['address']
         let cityCtrl = formGroup.controls['city']
         let countryCtrl = formGroup.controls['country']

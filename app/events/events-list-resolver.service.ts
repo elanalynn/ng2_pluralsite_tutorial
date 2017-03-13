@@ -6,7 +6,7 @@ import { EventsService } from './shared/events.service'
 export class EventsListResolver implements Resolve<any> {
   constructor (private eventsService: EventsService) {}
 
-  private resolve() {
+  public resolve() {
     return this.eventsService.getEvents()
   }
 }

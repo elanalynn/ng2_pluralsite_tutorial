@@ -17,16 +17,16 @@ import { ISession, restrictedWords } from '../shared/index'
 })
 
 export class CreateSessionComponent {
-    @Output() private saveNewSession = new EventEmitter()
-    @Output() private cancelAddSession = new EventEmitter()
-    private newSessionForm: FormGroup
-    private name: FormControl
-    private presenter: FormControl
-    private duration: FormControl
-    private level: FormControl
-    private abstract: FormControl
+    @Output() public saveNewSession = new EventEmitter()
+    @Output() public cancelAddSession = new EventEmitter()
+    public newSessionForm: FormGroup
+    public name: FormControl
+    public presenter: FormControl
+    public duration: FormControl
+    public level: FormControl
+    public abstract: FormControl
 
-    private ngOnInit() {
+    public ngOnInit() {
         this.name = new FormControl('', Validators.required)
         this.presenter = new FormControl('', Validators.required)
         this.duration = new FormControl('', Validators.required)
@@ -47,7 +47,7 @@ export class CreateSessionComponent {
         })
     }
 
-    private saveSession(formValues) {
+    public saveSession(formValues) {
         let session: ISession = {
             abstract: formValues.abstract,
             duration: +formValues.duration,
@@ -60,7 +60,7 @@ export class CreateSessionComponent {
         this.saveNewSession.emit(session)
     }
 
-    private cancel() {
+    public cancel() {
         this.cancelAddSession.emit()
     }
 }

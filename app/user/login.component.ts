@@ -9,9 +9,10 @@ import { AuthService } from './auth.service'
 
 export class LoginComponent {
   private loginInvalid = false
-  constructor(private authService: AuthService, private router: Router) {
-
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   public login(formValues) {
     this.authService.loginUser(formValues.userName, formValues.password).subscribe((resp) => {

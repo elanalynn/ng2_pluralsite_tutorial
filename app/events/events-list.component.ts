@@ -8,13 +8,13 @@ import { IEvent } from './shared/index'
 })
 
 export class EventsListComponent implements OnInit {
-  private events: IEvent[]
+  public events: IEvent[]
   constructor(
     private eventsService: EventsService,
     private route: ActivatedRoute,
     ) {}
 
-  private ngOnInit() {
+  public ngOnInit() {
     this.events = this.route.snapshot.data['events']
   }
 
