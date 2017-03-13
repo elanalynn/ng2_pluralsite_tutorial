@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core'
-import { EventsService } from './shared/events.service'
 import { ActivatedRoute } from '@angular/router'
+import { EventsService } from './shared/events.service'
 import { IEvent } from './shared/index'
 
 @Component({
-  templateUrl: 'app/events/events-list.component.html'
+  templateUrl: 'app/events/events-list.component.html',
 })
 
 export class EventsListComponent implements OnInit {
-  events:IEvent[]
+  private events: IEvent[]
   constructor(
-    private eventsService:EventsService, 
-    private route:ActivatedRoute
-    ){}
+    private eventsService: EventsService,
+    private route: ActivatedRoute,
+    ) {}
 
-  ngOnInit(){
+  private ngOnInit() {
     this.events = this.route.snapshot.data['events']
   }
 

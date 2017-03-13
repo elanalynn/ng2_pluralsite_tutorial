@@ -1,53 +1,47 @@
 import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
-import { RouterModule } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
+import { BrowserModule } from '@angular/platform-browser'
+import { RouterModule } from '@angular/router'
 
 import { EventsAppComponent } from './events-app.component'
 
 import {
-  EventsService,
-  VoterService,
-  EventsListComponent,
-  EventThumbnailComponent,
   CreateEventComponent,
-  EventDetailsComponent,
-  EventsListResolver,
-  EventResolver,
   CreateSessionComponent,
+  DurationPipe,
+  EventDetailsComponent,
+  EventResolver,
+  EventsListComponent,
+  EventsListResolver,
+  EventsService,
+  EventThumbnailComponent,
+  LocationValidator,
   SessionListComponent,
   UpvoteComponent,
-  LocationValidator,
-  DurationPipe
+  VoterService,
 } from './events/index'
 
-import { 
-  TOASTR_TOKEN, 
-  Toastr,
-  JQ_TOKEN,
+import {
   CollapsableWellComponent,
+  JQ_TOKEN,
+  ModalTriggerDirective,
   SimpleModalComponent,
-  ModalTriggerDirective
+  Toastr,
+  TOASTR_TOKEN,
 } from './common/index'
 
-import { NavBarComponent } from './nav/navbar.component'
 import { Error404Component } from './errors/404.component'
+import { NavBarComponent } from './nav/navbar.component'
 import { AuthService } from './user/auth.service'
 
 import { appRoutes } from './routes'
 
-declare let toastr:Toastr
-declare let jQuery:Object
+declare let toastr: Toastr
+declare let jQuery: Object
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    FormsModule,
-    HttpModule,
-    ReactiveFormsModule
-  ],
+  bootstrap: [EventsAppComponent],
   declarations: [
     NavBarComponent,
     EventsAppComponent,
@@ -63,7 +57,14 @@ declare let jQuery:Object
     UpvoteComponent,
     ModalTriggerDirective,
     LocationValidator,
-    DurationPipe
+    DurationPipe,
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule,
   ],
   providers: [
     EventsService,
@@ -73,15 +74,15 @@ declare let jQuery:Object
     EventsListResolver,
     EventResolver,
     AuthService,
-    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
   ],
-  bootstrap: [EventsAppComponent]
 })
 
 export class AppModule {}
 
-function checkDirtyState(component:CreateEventComponent){
-  if(component.isDirty)
-    window.confirm('You have not saved this event. Do you really want to cancel?')
+function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty) {
+      window.confirm('You have not saved this event. Do you really want to cancel?')
+  }
   return true
 }

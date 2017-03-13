@@ -9,13 +9,13 @@ import { Component, Input } from '@angular/core'
             </h4>
             <ng-content *ngIf="visible" select="[well-body]"></ng-content>
         </div>
-    `
+    `,
 })
 
 export class CollapsableWellComponent {
-    visible:boolean = true
+    private visible: boolean = true
 
-    toggleContent(){
+    private toggleContent() {
         this.visible = !this.visible
     }
 }

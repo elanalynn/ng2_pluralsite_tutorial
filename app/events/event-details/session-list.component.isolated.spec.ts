@@ -1,9 +1,10 @@
-import { SessionListComponent } from './session-list.component'
 import { ISession } from '../shared/event.model'
+import { SessionListComponent } from './session-list.component'
 
 describe('SessionListComponent', () => {
-    let component:SessionListComponent
-    let mockAuthService, mockVoterService
+    let component: SessionListComponent
+    let mockAuthService
+    let mockVoterService
 
     beforeEach(() => {
         component = new SessionListComponent(mockAuthService, mockVoterService)
@@ -12,9 +13,9 @@ describe('SessionListComponent', () => {
     describe('ngOnChanges', () => {
         it('should filter the sessions correctly', () => {
             component.sessions = <ISession[]>[
-                { name: 'session 1', level: 'intermediate' }, 
-                { name: 'session 2', level: 'adcanced' }, 
-                { name: 'session 3', level: 'beginner' }, 
+                { name: 'session 1', level: 'intermediate' },
+                { name: 'session 2', level: 'adcanced' },
+                { name: 'session 3', level: 'beginner' },
             ]
             component.filterBy = 'intermediate'
             component.sortBy = 'name'
@@ -27,9 +28,9 @@ describe('SessionListComponent', () => {
 
         it('should sort the sessions correctly', () => {
             component.sessions = <ISession[]>[
-                { name: 'session 1', level: 'intermediate' }, 
-                { name: 'session 3', level: 'adcanced' }, 
-                { name: 'session 2', level: 'beginner' }, 
+                { name: 'session 1', level: 'intermediate' },
+                { name: 'session 3', level: 'adcanced' },
+                { name: 'session 2', level: 'beginner' },
             ]
             component.filterBy = 'all'
             component.sortBy = 'name'

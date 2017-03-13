@@ -1,10 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ISession, restrictedWords } from '../shared/index'
 
-@Component({ 
+@Component({
     selector: 'create-session',
-    templateUrl: 'app/events/event-details/create-session.component.html',
     styles: [`
         em { float: right; color: #E05C65; padding-left: 10px; }
         .error input, .error select, .error textarea { background-color: #E3C3C5 }
@@ -12,51 +11,56 @@ import { ISession, restrictedWords } from '../shared/index'
         .error ::-moz-placeholder { color: #999 }
         .error :-moz-placeholder { color: #999 }
         .error :-ms-placeholder { color: #999 }
-    `]
+    `],
+    templateUrl: 'app/events/event-details/create-session.component.html',
+
 })
 
 export class CreateSessionComponent {
-    @Output() saveNewSession = new EventEmitter
-    @Output() cancelAddSession = new EventEmitter
-    newSessionForm: FormGroup
-    name: FormControl
-    presenter: FormControl
-    duration: FormControl
-    level: FormControl
-    abstract: FormControl
-    
-    ngOnInit(){
+    @Output() private saveNewSession = new EventEmitter()
+    @Output() private cancelAddSession = new EventEmitter()
+    private newSessionForm: FormGroup
+    private name: FormControl
+    private presenter: FormControl
+    private duration: FormControl
+    private level: FormControl
+    private abstract: FormControl
+
+    private ngOnInit() {
         this.name = new FormControl('', Validators.required)
         this.presenter = new FormControl('', Validators.required)
         this.duration = new FormControl('', Validators.required)
         this.level = new FormControl('', Validators.required)
-        this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), restrictedWords(['foo', 'bar'])])
-        
+        this.abstract = new FormControl(
+            '',
+            [Validators.required,
+            Validators.maxLength(400),
+            restrictedWords(['foo', 'bar'])],
+        )
+
         this.newSessionForm = new FormGroup({
-            name: this.name,
-            presenter: this.presenter,
+            abstract: this.abstract,
             duration: this.duration,
             level: this.level,
-            abstract: this.abstract
+            name: this.name,
+            presenter: this.presenter,
         })
     }
 
-
-
-    saveSession(formValues){
-        let session:ISession = {
+    private saveSession(formValues) {
+        let session: ISession = {
+            abstract: formValues.abstract,
+            duration: +formValues.duration,
             id: undefined,
+            level: formValues.level,
             name: formValues.name,
             presenter: formValues.presenter,
-            duration: +formValues.duration,
-            level: formValues.level,
-            abstract: formValues.abstract,
-            voters: []
+            voters: [],
         }
         this.saveNewSession.emit(session)
     }
 
-    cancel(){
+    private cancel() {
         this.cancelAddSession.emit()
     }
 }

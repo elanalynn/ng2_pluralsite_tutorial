@@ -3,33 +3,33 @@ import { Router } from '@angular/router'
 import { EventsService } from './shared/events.service'
 
 @Component({
-  templateUrl: 'app/events/create-event.component.html',
-  styles: [`
+   styles: [`
       em { float: right; color: #E05C65; padding-left: 10px; }
       .error input { background-color: #E3C3C5 }
       .error ::-webkit-input-placeholder { color: #999 }
       .error ::-moz-placeholder { color: #999 }
       .error :-moz-placeholder { color: #999 }
       .error :-ms-placeholder { color: #999 }
-    `]
+    `],
+    templateUrl: 'app/events/create-event.component.html',
 })
 
 export class CreateEventComponent {
-  isDirty:boolean = true
-  event:any
+  private isDirty: boolean = true
+  private event: any
 
-  constructor(private router:Router, private eventsService:EventsService){
+  constructor(private router: Router, private eventsService: EventsService) {
 
   }
 
-  saveEvent(formValues){
-    this.eventsService.saveEvent(formValues).subscribe(event => {
+  private saveEvent(formValues) {
+    this.eventsService.saveEvent(formValues).subscribe((event) => {
       this.router.navigate(['/events'])
       this.isDirty = false
     })
   }
 
-  cancel(){
+  private cancel() {
     this.router.navigate(['/events'])
   }
 }
