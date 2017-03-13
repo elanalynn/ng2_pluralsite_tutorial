@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core'
 import { Headers, Http, RequestOptions, Response } from '@angular/http'
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable'
 import { ISession } from '../shared/event.model'
 
 @Injectable()
 export class VoterService {
     constructor(private http: Http) {}
 
-    public addVoter(eventId: number, session: ISession, voterName: string) {
+    addVoter(eventId: number, session: ISession, voterName: string) {
         session.voters.push(voterName)
 
         let headers = new Headers({ 'Content-Type': 'application/json '})
@@ -17,17 +17,17 @@ export class VoterService {
         this.http.post(url, JSON.stringify({}), options).subscribe()
     }
 
-    public deleteVoter(eventId: number, session: ISession, voterName: string) {
+    deleteVoter(eventId: number, session: ISession, voterName: string) {
         session.voters = session.voters.filter((voter) => voter !== voterName)
         let url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`
         this.http.delete(url).catch(this.handleError).subscribe()
     }
 
-    public userHasVoted(session: ISession, voterName: string) {
+    userHasVoted(session: ISession, voterName: string) {
         return session.voters.some((voter) => voter === voterName)
     }
 
-    public handleError(error: Response) {
+    handleError(error: Response) {
         return Observable.throw(error.statusText)
     }
 }

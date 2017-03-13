@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Headers, Http, RequestOptions, Response } from '@angular/http'
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable'
 import { IUser } from './user.model'
 
 @Injectable()
@@ -18,8 +18,7 @@ export class AuthService {
       password,
     }
     let url = `/api/login/`
-    return this.http.post(url, JSON.stringify(loginInfo), options)
-    .do((resp) => {
+    return this.http.post(url, JSON.stringify(loginInfo), options).do((resp) => {
       if (resp) {
         this.currentUser = <IUser>resp.json().user
       }
