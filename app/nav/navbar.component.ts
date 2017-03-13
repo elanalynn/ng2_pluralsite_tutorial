@@ -19,7 +19,7 @@ export class NavBarComponent {
   public foundSessions: ISession[]
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private eventsService: EventsService,
   ) {}
 

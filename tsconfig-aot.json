@@ -13,9 +13,12 @@
       "./node_modules/@types/"
     ]
   },
-  "compileOnSave": true,
-  "exclude": [
-    "node_modules/*",
-    "**/*-aot.ts"
-  ]
+  "files": [
+      "app/app.module.ts",
+      "app/main-aot.ts"
+  ],
+  "angularCompulerOptions": {
+      "gendir": "aot",
+      "skipMetadataEmit": true
+  }
 }
