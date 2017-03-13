@@ -10,6 +10,7 @@ import { IEvent } from './shared/index'
     '.pad-left { margin-left: 10px; }',
     '.well div { color: #bbb; }',
   ],
+  templateUrl: '/app/events/event-thumbnail.component.html',
 })
 
 export class EventThumbnailComponent {
